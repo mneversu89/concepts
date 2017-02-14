@@ -1,4 +1,3 @@
 *.iml
-previouswork/*
 .idea/
-
+/previouswork/
