@@ -25,6 +25,7 @@ public class AddTwoLinkedList {
         if(l1 == null && l2==null && carry == 0) {
             return null;
         }
+
         int value = carry;
         if(l1 != null) {
              value = value+ l1.val;
@@ -32,9 +33,8 @@ public class AddTwoLinkedList {
         if(l2 != null) {
              value = value + l2.val;
         }
-
-        ListNode result = new ListNode(value%10);
-        if(l1 != null && l2 != null) {
+        ListNode result = new ListNode(value %10);
+        if(l1 != null || l2 != null) {
             ListNode more = addNodes(value >= 10 ? 1 : 0, l1 == null ? null : l1.next,
                     l2 == null ? null : l2.next);
             result.next = more;
@@ -121,8 +121,19 @@ public class AddTwoLinkedList {
         ListNode Kl3 = new ListNode(4);
         Kl1.next = Kl2;
         Kl2.next = Kl3;
+
+        ListNode Al1 = new ListNode(9);
+        ListNode Al2 = new ListNode(9);
+        ListNode Bl1 = new ListNode(1);
+        Al1.next = Al2;
+
         AddTwoLinkedList addTwoLinkedList = new AddTwoLinkedList();
         ListNode head= addTwoLinkedList.addTwoNumbers(Tl1, Kl1);
+        ListNode head1= addTwoLinkedList.addTwoNumbers(Al1, Bl1);
+        addTwoLinkedList.print(head);
+        addTwoLinkedList.print(head1);
+    }
+    private void print(ListNode head) {
         if(head != null) {
             ListNode it = head;
             do {
