@@ -42,6 +42,73 @@ public class AddTwoLinkedList {
         return result;
     }
 
+
+    //Iterative solution
+    public ListNode addTwoNumbersIterative(ListNode l1, ListNode l2) {
+        if(l1 == null && l2 == null){
+            return null;
+        }
+        if(l1 == null) {
+            return l2;
+        }
+        if(l2 == null) {
+            return l1;
+        }
+        ListNode root = null;
+        ListNode curr = null;
+        int carry = 0;
+        do {
+            int value = (l1.val + l2.val + carry);
+            carry = value/10;
+            int nodeValue = value%10;
+            if(root == null) {
+                root = new ListNode(nodeValue);
+                curr = root;
+            }
+            else {
+                curr.next = new ListNode(nodeValue);
+                curr = curr.next;
+            }
+            l1 = l1.next;
+            l2 = l2.next;
+        }while(l1 != null && l2 != null);
+
+        if(l1 == null && l2 == null) {
+            if(carry != 0) {
+                curr.next = new ListNode(carry);
+                curr = curr.next;
+            }
+            return root;
+        }
+        if(l1 == null && l2 !=null) {
+            do {
+                int value = l2.val + carry;
+                carry = value/10;
+                int nodeValue = value%10;
+                curr.next = new ListNode(nodeValue);
+                curr = curr.next;
+                l2 = l2.next;
+            }while(l2 != null);
+        }
+        if(l2 == null&& l1 !=null) {
+            do {
+                int value = l1.val + carry;
+                carry = value/10;
+                int nodeValue = value%10;
+                curr.next = new ListNode(nodeValue);
+                curr = curr.next;
+                l1 = l1.next;
+            }while(l1 != null);
+        }
+
+        if(carry != 0) {
+            curr.next = new ListNode(carry);
+            curr = curr.next;
+        }
+        return root;
+
+    }
+
     public static void main(String args[]) {
         //TestCase
         ListNode Tl1 = new ListNode(2);
