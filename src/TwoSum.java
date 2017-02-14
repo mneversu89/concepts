@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Objects;
 
 /**
@@ -12,7 +13,7 @@ import java.util.Objects;
 
 
 public class TwoSum {
-    //Brute force way
+    //Brute force way O(n2)
     public int[] twoSum(int[] nums, int target) throws Exception{
         if(Objects.isNull(nums)) {
             throw new Exception("nums array cannot be null");
@@ -28,6 +29,26 @@ public class TwoSum {
                     return new int[]{indexI, indexJ};
                 }
             }
+        }
+        return new int[0];
+    }
+
+    //O(n)
+    public int[] twoSum2(int[] nums, int target) throws Exception {
+        if (Objects.isNull(nums)) {
+            throw new Exception("nums array cannot be null");
+        }
+        if (nums.length == 0 || nums.length == 1) {
+            return new int[0];
+        }
+
+        final HashMap<Integer, Integer> map= new HashMap<>();
+        for(int indexI=0;indexI<nums.length;indexI++) {
+            int otherNumber = target - nums[indexI];
+            if(map.containsKey(otherNumber)) {
+                return new int[]{indexI, map.get(otherNumber)};
+            }
+            map.put(nums[indexI],indexI);
         }
         return new int[0];
     }
