@@ -1,3 +1,5 @@
+package ajay;
+
 import java.util.HashMap;
 
 public class LongestSubstringWithoutRepeatingChar {
